@@ -1,0 +1,11 @@
+scrapy
+pandas
+gspread
+oauth2client
+python-dotenv
+jupyter
+ipykernel
+requests
+bs4
+altair
+pandas-profiling[notebook]
