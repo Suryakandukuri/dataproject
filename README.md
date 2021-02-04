@@ -21,22 +21,16 @@ Install the packages using the following command:
 
     pip install -r requirements.txt
 
-## Running the Dashboards
+### Running the Scrapers
 
-Execute the following commands to run the dashboard:
+for running Amazon Kindle Ebooks Last 90 days script and also there is ipython notebook (get_kindle_data.ipynb)
 
-    streamlit run projects/<app_name>/main.py
+    python get_kindle_books.py
 
-You can now view the dashboard in your browser: http://localhost:8501
 
-**Note: ** The port might change from 8501 to a different one if 8501 is already in use.
+for running Flipkart Mobile phones data script, and also there is ipython notebook (get_flipkart_mobile_data.ipynb)
 
-## Running using Docker Compose
+    python get_flipkart_data.py
 
-You can also run the dashboard using docker-compose by running the following command:
 
-    docker-compose up
-
-You can now view the dashboard in your browser: http://localhost:8501
-
-**Note: ** The port 8501 should be available to run the app using docker-compose.
+for sales data analysis, you can look into salesdata_analysis.ipynb
