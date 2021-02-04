@@ -1,49 +1,57 @@
 import scrapy
 from scrapy.crawler import CrawlerProcess
 from scrapy import Request, FormRequest
+import pandas as pd
 
 
 class KindleBooks(scrapy.Spider):\
 
     name = "kindlebooks"
 
+    # initiating a booklist to append the data
     book_list = []
 
     def start_requests(self):
+        # urls for the landing page and the second page on the amazon.com new releases in last 90 days
         start_urls = [
-            "https://www.amazon.com/Deals-Kindle-Books-Last-90-days/s?rh=n%3A11552285011%2Cp_n_date%3A1249101011"
+            "https://www.amazon.com/Deals-Kindle-Books-Last-90-days/s?rh=n%3A11552285011%2Cp_n_date%3A1249101011",
+            "https://www.amazon.com/Deals-Kindle-Books-Last-90-days/s?i=digital-text&rh=n%3A11552285011%2Cp_n_date%3A1249101011&page=2&qid=1612474374&ref=sr_pg_2"
         ]
-        for url in start_urls:
+        for url in start_urls[:]:
             yield Request(
                 url,
                 callback= self.parse
             )
-            # yield FormRequest(
-            #     url = url,
-            #     method = "GET",
-            #     formdata= {
-            #         "bbn":"11552285011",
-            #         "rh":"n:11552285011,p_n_date:1249101011",
-            #         "dc":"",
-            #         "qid":"1612457524",
-            #         "rnid":"1249099011",
-            #         "ref":"lp_11552285011_nr_p_n_date_1"
-            #     },
-            #     callback=self.parse,
-            # )
+
 
     def parse(self, response):
 
-        print(response.text)
+        # xpath value to get the names of the books and ratings
+        book_names = response.xpath('//*[@class="a-size-medium a-color-base a-text-normal"]/text()').extract()
 
-        # book_data = response.css("sg-col-inner").extract()
+        rating_data = response.xpath('//*[@class="a-popover-trigger a-declarative"]/i/span/text()').extract()
 
-        # last_90_link = response.xpath(
-        #     '//*[@class="a-unordered-list a-nostyle a-vertical a-spacing-medium"]/li/span/a'
-        # ).extract()
-
-        # print(last_90_link)
+        # making them a dataframe
+        page_data = pd.DataFrame(
+            {
+                "book_name": book_names,
+                "rating":rating_data
+            }
+        )
+        # just to verify the data
+        print(page_data)
+        # appending it to the list
+        self.book_list.append(page_data)
         
+        pass
+    # this works after the spider scrapes both the urls.
+    def close(self, reason):
+        # concating both the pages.
+        kindle_books = pd.concat(self.book_list)
+        kindle_books = kindle_books.reset_index(drop=True, inplace= False)
+        # adding data to csv file.
+        kindle_books.to_csv("kindle_ebooks_last90days.csv", index=False)
+
 
 
 def main():
@@ -57,16 +65,8 @@ def main():
     """
     process = CrawlerProcess(
         settings={
-            "user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
-            # Uncomment lines below to add download_delay and concurrent_requests to crawler settings
-            # "DOWNLOAD_DELAY": 0.25,  # 250 milliseconds
-            # "CONCURRENT_REQUESTS": 3,
-            # Set the download timeout
-            # "DOWNLOAD_TIMEOUT": 300,
-            # Set robotstxt_obey to False
-            # "ROBOTSTXT_OBEY": False,
-            # Item pipeline for catalog
-            # "ITEM_PIPELINES": {"factly.scrape.pipelines.SaveCatalogCSV": 10},
+            "USER_AGENT":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
+            "ROBOTSTXT_OBEY": True
         }
     )
     process.crawl(KindleBooks)
