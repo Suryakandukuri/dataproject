@@ -84,9 +84,14 @@ def extract_kaggle_data(zipfile_loc,output_path):
     pass
 
 def kaggle_dataset():
+    '''
+    Function to combine downlaod and extract functions written after asking 
+    user inputs on kaggle path, folder name to be created in local while download
+    output folder after extraction of the file
+    '''
     kaggle_path = input("Enter the kaggle dataset path: ")
     folder_name = input("Enter the folder name to be created: ")
-    output_path = input("Enter the output folder name: ")
+    output_path = input("Enter the output folder path: ")
     zipfile_loc = download_kaggle_dataset(kaggle_path, folder_name)
     extract_kaggle_data(zipfile_loc, output_path)
     print("Kaggle Datasets are downlaoded and extracted")

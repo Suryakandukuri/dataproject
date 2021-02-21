@@ -41,3 +41,28 @@ To configure the library, run the following command:
 Alternatively, tokens can be provided via the DW_AUTH_TOKEN environment variable. On MacOS or Unix machines, run (replacing <YOUR_TOKEN>> below with the token obtained earlier):
 
     export DW_AUTH_TOKEN=<YOUR_TOKEN>
+
+### get_data.py
+
+Purpose of the script is to access the datasets from kaggle and data.world (datadotworld package) using functions that will ask for user inputs to find and download the required datasets from there.
+
+for data.world datasets, script will ask user to input the username/dataset_name of the dataset on data.world and further selecting the dataframe among the list of datasets.
+
+for kaggle datasets, script will download the dataset as zip file, and extract one file that user needs to a specific output folder (folder has to be already present)
+
+### create_dataset.py
+
+Using pandas to merge the two datasets one from World Health Organisation (WHO) and the other on Covid 19 Country wise data. I have used inner join to merge the two datasets.
+
+#### Column created total_healthcare_personell
+Calculated the total healthcare personnel by add these columns, "number_of_community_and_traditional_health_workers","number_of_laboratory_health_workers" , "number_of_nursing_and_midwifery_personnel", "number_of_physicians", "number_of_other_health_service_providers"
+
+Thought process is to see how health care personnel has impacted the control and spread of covid19
+
+### script_ex2.py
+
+Basic functional script with class defined for getting information on the dataframes. Usage of Decorators and without decorators
+
+Using a decorator made it possible to call the functions in the class by using self, without calling each funciton
+Where as without using the decorator, we called each of the functions to get the same response as in the above case.
+Both of them, have their own purposes.
