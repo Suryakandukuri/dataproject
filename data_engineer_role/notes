@@ -1,0 +1,9 @@
+data.world input values
+path: "resiport/who-dataset"
+key: "who"
+
+kaggle input values
+kaggle_path: "imdevskp/corona-virus-report"
+folder_name: "country_wise_latest"
+output_folder: "data/"
+file you want to extract: "country_wise_latest.csv"

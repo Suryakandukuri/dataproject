@@ -15,29 +15,3 @@ Activate the virtual environment:
 
 ### For Windows
 Set up is not tested for Windows. Need to test and update the steps here appropriately.
-
-### Install dependencies
-Install the packages using the following command:
-
-    pip install -r requirements.txt
-
-### Access of datasets from kaggle and data.world
-
-1. kaggle
-
-Add ~/.kaggle/kaggle.json with credentials from kaggle account to access the dataset
-
-2. data.world
-
-    Configuration
-This library requires a data.world API authentication token to work.
-
-Your authentication token can be obtained on data.world once you enable Python under Integrations > Python
-
-To configure the library, run the following command:
-
-    dw configure
-
-Alternatively, tokens can be provided via the DW_AUTH_TOKEN environment variable. On MacOS or Unix machines, run (replacing <YOUR_TOKEN>> below with the token obtained earlier):
-
-    export DW_AUTH_TOKEN=<YOUR_TOKEN>
