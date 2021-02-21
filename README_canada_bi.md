@@ -20,3 +20,17 @@ Set up is not tested for Windows. Need to test and update the steps here appropr
 Install the packages using the following command:
 
     pip install -r requirements.txt
+
+### Running the Scrapers
+
+for running Amazon Kindle Ebooks Last 90 days script and also there is ipython notebook (get_kindle_data.ipynb)
+
+    python get_kindle_books.py
+
+
+for running Flipkart Mobile phones data script, and also there is ipython notebook (get_flipkart_mobile_data.ipynb)
+
+    python get_flipkart_data.py
+
+
+for sales data analysis, you can look into salesdata_analysis.ipynb

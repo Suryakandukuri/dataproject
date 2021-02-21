@@ -8,4 +8,6 @@ ipykernel
 requests
 bs4
 altair
+kaggle
+datadotworld[pandas]
 pandas-profiling[notebook]

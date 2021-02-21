@@ -21,16 +21,23 @@ Install the packages using the following command:
 
     pip install -r requirements.txt
 
-### Running the Scrapers
+### Access of datasets from kaggle and data.world
 
-for running Amazon Kindle Ebooks Last 90 days script and also there is ipython notebook (get_kindle_data.ipynb)
+1. kaggle
 
-    python get_kindle_books.py
+Add ~/.kaggle/kaggle.json with credentials from kaggle account to access the dataset
 
+2. data.world
 
-for running Flipkart Mobile phones data script, and also there is ipython notebook (get_flipkart_mobile_data.ipynb)
+    Configuration
+This library requires a data.world API authentication token to work.
 
-    python get_flipkart_data.py
+Your authentication token can be obtained on data.world once you enable Python under Integrations > Python
 
+To configure the library, run the following command:
 
-for sales data analysis, you can look into salesdata_analysis.ipynb
+    dw configure
+
+Alternatively, tokens can be provided via the DW_AUTH_TOKEN environment variable. On MacOS or Unix machines, run (replacing <YOUR_TOKEN>> below with the token obtained earlier):
+
+    export DW_AUTH_TOKEN=<YOUR_TOKEN>
