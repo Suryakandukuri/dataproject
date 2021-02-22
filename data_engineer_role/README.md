@@ -50,6 +50,8 @@ for data.world datasets, script will ask user to input the username/dataset_name
 
 for kaggle datasets, script will download the dataset as zip file, and extract one file that user needs to a specific output folder (folder has to be already present)
 
+    Values required for the TASK to collect WHO-Dataset and Country-Wise-latest from data.world and kaggle are available in notes file
+
 ### create_dataset.py
 
 Using pandas to merge the two datasets one from World Health Organisation (WHO) and the other on Covid 19 Country wise data. I have used inner join to merge the two datasets.
